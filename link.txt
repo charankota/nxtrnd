@@ -1,0 +1,14 @@
+https://tailblocks.cc/
+https://tailblocks.org/
+https://www.pragimtech.com/blog/blazor/post-in-aspnet-core-rest-api/
+https://angrytools.com/css/animation/
+
+https://www.youtube.com/watch?v=qPCKp41dNNo
+https://github.com/umairjameel321/contextapi-nextjs13/blob/main/src/context/PostContext.js
+https://fullstackdeveloper.tips/help-react-context-not-working/#
+
+https://sweetalert2.github.io/#examples
+https://tailwindcomponents.com/component/post-card-course-online
+https://codepen.io/Huhtamaki/pen/GPzwPY(Glowing Border)
+
+https://www.tutorialspoint.com/nextjs/nextjs_deployment.htm

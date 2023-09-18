@@ -1,0 +1,11 @@
+{
+  "/page": "app/page.js",
+  "/register/page": "app/register/page.js",
+  "/rnd2/page": "app/rnd2/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/forget/page": "app/forget/page.js",
+  "/rnd/page": "app/rnd/page.js",
+  "/test/exam/page": "app/test/exam/page.js",
+  "/test/level/page": "app/test/level/page.js",
+  "/test/testlist/page": "app/test/testlist/page.js"
+}

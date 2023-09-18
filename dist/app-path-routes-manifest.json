@@ -1,0 +1,11 @@
+{
+  "/page": "/",
+  "/register/page": "/register",
+  "/rnd2/page": "/rnd2",
+  "/favicon.ico/route": "/favicon.ico",
+  "/forget/page": "/forget",
+  "/rnd/page": "/rnd",
+  "/test/exam/page": "/test/exam",
+  "/test/level/page": "/test/level",
+  "/test/testlist/page": "/test/testlist"
+}
