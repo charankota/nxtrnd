@@ -2,7 +2,7 @@
 const nextConfig = {
     reactStrictMode: false,
     //reactStrictMode: true,
-    distDir: 'dist'
+    //distDir: 'dist'
     // distDir: 'dist'
 }
 
