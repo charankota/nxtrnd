@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 //const baseURL = "http://localhost:5234/api/Concept/"
-const baseURL = "http://103.170.169.26:3035/api/Concept/"
+const baseURL = "https://192.168.0.241:45460/api/Concept/"
 
 //http://localhost:5234/api/Concept/TestQuestions?testid=474018
 
