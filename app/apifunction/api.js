@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const baseURL = "http://localhost:5234/api/Concept/"
+//const baseURL = "http://localhost:5234/api/Concept/"
+const baseURL = "http://103.170.169.26:3035/api/Concept/"
+
 //http://localhost:5234/api/Concept/TestQuestions?testid=474018
 
 export const login = async (logindata) => {

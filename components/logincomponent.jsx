@@ -1,15 +1,13 @@
 'use client'
-import { useState, useEffect, useRef } from "react";
-import { PostContext } from '../app/Context/PostContext'
-import { useContext } from "react";
-import { login } from '../app/apifunction/api'
-import Swal from 'sweetalert2'
-import style from '../styles/login.module.css'
+import Link from 'next/link';
+import { useRouter } from "next/navigation";
+import { useContext, useRef } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { useRouter } from "next/navigation";
-import Link from 'next/link';
-import Alert from './alert'
+import Swal from 'sweetalert2';
+import { PostContext } from '../app/Context/PostContext';
+import { login } from '../app/apifunction/api';
+import style from '../styles/login.module.css';
 
 export default function LoginComponent() {
     const { rnd } = useContext(PostContext);
@@ -41,7 +39,7 @@ export default function LoginComponent() {
         setStdId(res.user.id);
         setUsrType('student');
         setUsr(res.user);
-        router.push('/testlist');
+        router.push('/test/testlist');
 
         // console.log(res.existuser);
         //console.log(res.user.mobile);
