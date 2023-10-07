@@ -1,6 +1,5 @@
 'use client'
-import React from 'react'
-import { createContext, useState } from 'react'
+import { createContext, useState } from 'react';
 export const PostContext = createContext(
 
 );
@@ -17,6 +16,8 @@ export const PostProvider = ({ children }) => {
     const [examId, setExamId] = useState(1);
     const [examLevel, setExamLevel] = useState("Easy");
     const [totCorrect, setTotCorrect] = useState(0);
+    const [totQue, setTotQue] = useState(0);
+    const [barTot, setBarTot] = useState(0);
 
     const [qno, setQno] = useState(1);
 
@@ -66,7 +67,7 @@ export const PostProvider = ({ children }) => {
 
 
     return (
-        <PostContext.Provider value={{ totCorrect, setTotCorrect, studentId, setStdId, user, setUsr, examId, setExmId, userType, setUsrType, rnd, changeRnd, rndDisplay, examLevel, setExamLevel }}>
+        <PostContext.Provider value={{ barTot, setBarTot, totQue, setTotQue, totCorrect, setTotCorrect, studentId, setStdId, user, setUsr, examId, setExamId, userType, setUsrType, rnd, changeRnd, rndDisplay, examLevel, setExamLevel }}>
             <div>{children}</div>
         </PostContext.Provider>
     )

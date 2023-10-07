@@ -1,9 +1,28 @@
 import axios from 'axios';
 
+
+// import Cors from 'cors'
+
+// // Initializing the cors middleware
+// const cors = Cors({
+//     methods: ['GET', 'HEAD'],
+// })
+let baseURL = "";
+{
+    process.env.NODE_ENV !== 'production' ?
+        baseURL = "http://localhost:5234/api/Concept/" :
+        baseURL = "https://msc.harshmobile.shop/api/Concept/"
+}
 //const baseURL = "http://localhost:5234/api/Concept/"
-const baseURL = "http://103.170.169.26:3035/api/Concept/"
+//const baseURL = "https://msc.harshmobile.shop/api/Concept/"
+//const baseURL = "https://192.168.0.241:45456/api/Concept/"
+
+
+//const baseURL = "https://192.168.0.241:45464/api/Concept" //"http://103.170.169.26:3035/api/Concept/"
 
 //http://localhost:5234/api/Concept/TestQuestions?testid=474018
+
+//console.log('Env : ' + process.env.NODE_ENV);
 
 export const login = async (logindata) => {
     const logdata = JSON.stringify(logindata);
@@ -39,6 +58,7 @@ export const testlist = async () => {
 }
 
 export const getTestQuestions = async (tid, lvl, studentid) => {
+
     const url = `${baseURL}TestQuestions?testid=${tid}&lvl=${lvl}&studentid=${studentid}`
     console.log(url);
     //const res = await fetch(`${ip}api/Phoenix/TestSyllabus?testid=${testid}`);
@@ -49,8 +69,9 @@ export const getTestQuestions = async (tid, lvl, studentid) => {
             throw new Error(`Failed to Load Center List`);
         }
         let data = await res.json();
-        data = data.test;
-        console.log(data.test);
+        console.log('Test :' + data.per);
+        //data = data.test;
+
         return data;
     } catch (error) {
         console.log('Failed to Load Test List', error);
@@ -70,12 +91,30 @@ export const getTestList = async (batchid, studentid) => {
 
 export const updateStudentAns = async (ans) => {
     const res = await fetch(`${baseURL}UpdateVlcAns`, {
-        method: 'PUT',
+        method: 'POST',
         body: JSON.stringify(ans),
+        //mode: 'no-cors',
+        //origin: 'http://localhost:3000',
+        // headers: {
+        //     'Content-Type': 'application/json',
+        //     "Access-Control-Allow-Credentials": "true",
+        //     //"Access-Control-Allow-Origin": "*",
+
+        //     'Access-Control-Allow-Origin': '*',
+        //     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        //     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        // }
         headers: {
-            'Content-Type': 'application/json'
-        }
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers":
+                "Content-Type, Authorization, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Date, X-Api-Version",
+            "Access-Control-Max-Age": "86400",
+        },
     });
+
+    console.log(res);
 
     return await res.json();
 }

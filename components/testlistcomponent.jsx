@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import chemImg from '../public/images/chemistry.jpg'
-import chem from '../public/images/chem.png'
-import phy from '../public/images/phy.png'
-import mat from '../public/images/mat.png'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { testlist } from '../app/apifunction/api'
+import chem from '../public/images/chem.png'
+import mat from '../public/images/mat.png'
+import phy from '../public/images/phy.png'
+import style from '../styles/testlist.module.css'
 
 export default function TestListComponent() {
 
     const [tList, setTList] = useState([])
+    const router = useRouter();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -16,7 +18,7 @@ export default function TestListComponent() {
             setTList(list);
             console.log('List : ' + list[0]);
             const length = list.length;
-            console.log('List12 : ' + length);
+            //console.log('List12 : ' + length);
         }
 
         fetchData();
@@ -57,15 +59,22 @@ export default function TestListComponent() {
         }
     };
 
+    const btnClick = (testid) => {
+        console.log(testid);
+        router.push(`/exam/test/exam?userid=${testid}`);
+        //router.push(`/exam/test/exam?userid=${userid}&orderid=${orderid}`);
+        //router.push('/');
+    }
+
     const Cards = () => {
         return (
-            <div className="min-h-screen  flex justify-center items-center py-20">
-                <div className="md:px-4 md:grid md:grid-cols-2 lg:grid-cols-4 gap-5 space-y-4 md:space-y-0">
+            <div className="flex items-center justify-center min-h-screen py-20">
+                <div className="gap-5 space-y-4 md:px-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:space-y-0">
                     {
                         tList.map((item, index) => {
 
                             return (
-                                <div key={index} className="max-w-sm bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
+                                <div key={index} className="max-w-sm px-6 pt-6 pb-2 transition duration-500 transform bg-white shadow-lg rounded-xl hover:scale-105">
                                     <h3 className="mb-3 text-xl font-bold text-indigo-600">
                                         {item.subject}
                                     </h3>
@@ -79,11 +88,11 @@ export default function TestListComponent() {
                                             className="w-full rounded-xl"
                                         /> */}
                                     </div>
-                                    <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">
+                                    <h1 className="mt-4 text-2xl font-bold text-gray-800 cursor-pointer">
                                         {item.tname}
                                     </h1>
                                     <div className="my-4">
-                                        <div className="flex space-x-1 items-center">
+                                        <div className="flex items-center space-x-1">
                                             <span>
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +111,7 @@ export default function TestListComponent() {
                                             </span>
                                             <p>1:34:23 Minutes</p>
                                         </div>
-                                        <div className="flex space-x-1 items-center">
+                                        <div className="flex items-center space-x-1">
                                             <span>
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +130,7 @@ export default function TestListComponent() {
                                             </span>
                                             <p>3 Parts</p>
                                         </div>
-                                        <div className="flex space-x-1 items-center">
+                                        <div className="flex items-center space-x-1">
                                             <span>
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -140,8 +149,8 @@ export default function TestListComponent() {
                                             </span>
                                             <p className='font-bold'>{item.topic}</p>
                                         </div>
-                                        <button className="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">
-                                            Buy Lesson
+                                        <button onClick={() => router.push(`/test/exam/${item.testmasterId}/abcd`)} className={`${style.tstbtn} mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg`}>
+                                            Start Test
                                         </button>
                                     </div>
                                 </div>
@@ -163,9 +172,9 @@ export default function TestListComponent() {
 
 
 
-            <div className="min-h-screen  flex justify-center items-center py-20">
-                <div className="md:px-4 md:grid md:grid-cols-2 lg:grid-cols-4 gap-5 space-y-4 md:space-y-0">
-                    <div className="max-w-sm bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
+            {/* <div className="flex items-center justify-center min-h-screen py-20">
+                <div className="gap-5 space-y-4 md:px-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:space-y-0">
+                    <div className="max-w-sm px-6 pt-6 pb-2 transition duration-500 transform bg-white shadow-lg rounded-xl hover:scale-105">
                         <h3 className="mb-3 text-xl font-bold text-indigo-600">
                             Beginner Friendly
                         </h3>
@@ -176,11 +185,11 @@ export default function TestListComponent() {
                                 alt="Colors"
                             />
                         </div>
-                        <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">
+                        <h1 className="mt-4 text-2xl font-bold text-gray-800 cursor-pointer">
                             Javascript Bootcamp for Absolute Beginners
                         </h1>
                         <div className="my-4">
-                            <div className="flex space-x-1 items-center">
+                            <div className="flex items-center space-x-1">
                                 <span>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -199,7 +208,7 @@ export default function TestListComponent() {
                                 </span>
                                 <p>1:34:23 Minutes</p>
                             </div>
-                            <div className="flex space-x-1 items-center">
+                            <div className="flex items-center space-x-1">
                                 <span>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -218,7 +227,7 @@ export default function TestListComponent() {
                                 </span>
                                 <p>3 Parts</p>
                             </div>
-                            <div className="flex space-x-1 items-center">
+                            <div className="flex items-center space-x-1">
                                 <span>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -237,12 +246,12 @@ export default function TestListComponent() {
                                 </span>
                                 <p>Vanilla JS</p>
                             </div>
-                            <button className="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">
+                            <button className="w-full py-2 mt-4 text-xl text-white bg-indigo-600 shadow-lg rounded-xl">
                                 Buy Lesson
                             </button>
                         </div>
                     </div>
-                    <div className="max-w-sm bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
+                    <div className="max-w-sm px-6 pt-6 pb-2 transition duration-500 transform bg-white shadow-lg rounded-xl hover:scale-105">
                         <h3 className="mb-3 text-xl font-bold text-indigo-600">Intermediate</h3>
                         <div className="relative">
                             <img
@@ -250,18 +259,18 @@ export default function TestListComponent() {
                                 src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
                                 alt="Colors"
                             />
-                            <p className="absolute top-0 bg-yellow-300 text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
+                            <p className="absolute top-0 px-3 py-1 font-semibold text-gray-800 bg-yellow-300 rounded-tl-lg rounded-br-lg">
                                 $12
                             </p>
-                            <p className="absolute top-0 right-0 bg-yellow-300 text-gray-800 font-semibold py-1 px-3 rounded-tr-lg rounded-bl-lg">
+                            <p className="absolute top-0 right-0 px-3 py-1 font-semibold text-gray-800 bg-yellow-300 rounded-tr-lg rounded-bl-lg">
                                 %20 Discount
                             </p>
                         </div>
-                        <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">
+                        <h1 className="mt-4 text-2xl font-bold text-gray-800 cursor-pointer">
                             Write a Gatsby plugin using Typescript
                         </h1>
                         <div className="my-4">
-                            <div className="flex space-x-1 items-center">
+                            <div className="flex items-center space-x-1">
                                 <span>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -280,7 +289,7 @@ export default function TestListComponent() {
                                 </span>
                                 <p>1:34:23 Minutes</p>
                             </div>
-                            <div className="flex space-x-1 items-center">
+                            <div className="flex items-center space-x-1">
                                 <span>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -299,7 +308,7 @@ export default function TestListComponent() {
                                 </span>
                                 <p>3 Parts</p>
                             </div>
-                            <div className="flex space-x-1 items-center">
+                            <div className="flex items-center space-x-1">
                                 <span>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -318,12 +327,12 @@ export default function TestListComponent() {
                                 </span>
                                 <p>TypeScript</p>
                             </div>
-                            <button className="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">
+                            <button className="w-full py-2 mt-4 text-xl text-white bg-indigo-600 shadow-lg rounded-xl">
                                 Start Watching Now
                             </button>
                         </div>
                     </div>
-                    <div className="max-w-sm bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
+                    <div className="max-w-sm px-6 pt-6 pb-2 transition duration-500 transform bg-white shadow-lg rounded-xl hover:scale-105">
                         <h3 className="mb-3 text-xl font-bold text-indigo-600">
                             Beginner Friendly
                         </h3>
@@ -333,15 +342,15 @@ export default function TestListComponent() {
                                 src="https://images.unsplash.com/photo-1561835491-ed2567d96913?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
                                 alt="Colors"
                             />
-                            <p className="absolute top-0 bg-yellow-300 text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">
+                            <p className="absolute top-0 px-3 py-1 font-semibold text-gray-800 bg-yellow-300 rounded-tl-lg rounded-br-lg">
                                 $50
                             </p>
                         </div>
-                        <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">
+                        <h1 className="mt-4 text-2xl font-bold text-gray-800 cursor-pointer">
                             Advanced React Native for Sustainability
                         </h1>
                         <div className="my-4">
-                            <div className="flex space-x-1 items-center">
+                            <div className="flex items-center space-x-1">
                                 <span>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -360,7 +369,7 @@ export default function TestListComponent() {
                                 </span>
                                 <p>1:34:23 Minutes</p>
                             </div>
-                            <div className="flex space-x-1 items-center">
+                            <div className="flex items-center space-x-1">
                                 <span>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -379,7 +388,7 @@ export default function TestListComponent() {
                                 </span>
                                 <p>3 Parts</p>
                             </div>
-                            <div className="flex space-x-1 items-center">
+                            <div className="flex items-center space-x-1">
                                 <span>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -398,29 +407,29 @@ export default function TestListComponent() {
                                 </span>
                                 <p>Vanilla JS</p>
                             </div>
-                            <button className="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">
+                            <button className="w-full py-2 mt-4 text-xl text-white bg-indigo-600 shadow-lg rounded-xl">
                                 Buy Lesson
                             </button>
                         </div>
                     </div>
-                    <div className="max-w-sm bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
+                    <div className="max-w-sm px-6 pt-6 pb-2 transition duration-500 transform bg-white shadow-lg rounded-xl hover:scale-105">
                         <h3 className="mb-3 text-xl font-bold text-indigo-600">
                             Chemistry
                         </h3>
                         <div className="relative">
                             <Image
-                                className="lg:h-48 md:h-36 w-full object-cover object-center"
+                                className="object-cover object-center w-full lg:h-48 md:h-36"
                                 src={chemImg}
                                 height={401}
                                 width={721}
                                 alt="blog"
                             />
                         </div>
-                        <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">
+                        <h1 className="mt-4 text-2xl font-bold text-gray-800 cursor-pointer">
                             Advanced React Native for Sustainability
                         </h1>
                         <div className="my-4">
-                            <div className="flex space-x-1 items-center">
+                            <div className="flex items-center space-x-1">
                                 <span>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -439,7 +448,7 @@ export default function TestListComponent() {
                                 </span>
                                 <p>1:34:23 Minutes</p>
                             </div>
-                            <div className="flex space-x-1 items-center">
+                            <div className="flex items-center space-x-1">
                                 <span>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -458,7 +467,7 @@ export default function TestListComponent() {
                                 </span>
                                 <p>3 Parts</p>
                             </div>
-                            <div className="flex space-x-1 items-center">
+                            <div className="flex items-center space-x-1">
                                 <span>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -477,13 +486,13 @@ export default function TestListComponent() {
                                 </span>
                                 <p>Vanilla JS</p>
                             </div>
-                            <button className="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">
+                            <button className="w-full py-2 mt-4 text-xl text-white bg-indigo-600 shadow-lg rounded-xl">
                                 Buy Lesson
                             </button>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </>
 
     )

@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react'
-import style from '../../styles/levelfinish.module.css'
 import Link from 'next/link';
+import { useContext, useEffect } from 'react';
 import { PostContext } from '../../app/Context/PostContext';
-import { useContext } from "react";
+import style from '../../styles/levelfinish.module.css';
 
 
 export default function LevelFinishComponent() {
-    const { examLevel, setExamLevel, user } = useContext(PostContext);
+    const { studentId, examId, examLevel, setExamLevel, totCorrect, setTotCorrect, user } = useContext(PostContext);
 
     useEffect(() => {
 
@@ -118,12 +117,19 @@ export default function LevelFinishComponent() {
 
     return (
         <>
-            <div className={`${style.h1} bg-white font-bold`}> Level Complete !
-                <div className=''>
-                    <Link href="/test/exam" >Go to <span className='text-red-500'> {examLevel}</span> Level</Link>
+            {examLevel != "Complete" ?
+                <div className={`${style.h1} bg-white font-bold`}> Level Complete !
+                    <div className=''>
+                        <Link href={`/test/exam/${examId}`} >Go to <span className='text-red-500'> {examLevel}</span> Level</Link>
+                    </div>
                 </div>
-            </div>
-            { }
+                :
+                <div className={`${style.h1} bg-white font-bold`}> All Level Complete !
+                    <div className=''>
+                        <Link href={`/test/testlist`} >Go to <span className='text-red-500'>Test List</span> </Link>
+                    </div>
+                </div>
+            }
             <canvas id="canvas" className={`${style.canvas}`}></canvas>
 
         </>

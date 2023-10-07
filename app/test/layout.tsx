@@ -1,3 +1,4 @@
+
 export default function DashboardLayout({
   children,
 }: {
@@ -5,9 +6,9 @@ export default function DashboardLayout({
 }) {
   return (
     <>
-      <aside className='w-64 bg-cyan-100 rounded-xl m-4'>
+      <aside className='w-64 m-4 bg-cyan-100 rounded-xl'>
         <nav>
-          <ul className='gap-4 flex flex-col p-4'>
+          <ul className='flex flex-col gap-4 p-4'>
             <li>
               <a href='#'>Account</a>
             </li>

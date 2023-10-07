@@ -1,8 +1,8 @@
 // File: J:\ReactTut\concept_test\app\test\exam\page.jsx
-import * as entry from '../../../../../app/test/exam/page.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
+import * as entry from '../../../../../app/test/exam/[...examId]/page.jsx'
 
-type TEntry = typeof import('../../../../../app/test/exam/page.js')
+type TEntry = typeof import('../../../../../app/test/exam/[...examId]/page.jsx')
 
 // Check that the entry is a valid entry
 checkFields<Diff<{
@@ -16,10 +16,10 @@ checkFields<Diff<{
   preferredRegion?: 'auto' | 'global' | 'home' | string | string[]
   runtime?: 'nodejs' | 'experimental-edge' | 'edge'
   maxDuration?: number
-  
+
   metadata?: any
   generateMetadata?: Function
-  
+
 }, TEntry, ''>>()
 
 // Check the prop type of the entry function
@@ -62,7 +62,7 @@ type MaybeField<T, K extends string> = T extends { [k in K]: infer G } ? G exten
 
 
 
-function checkFields<_ extends { [k in keyof any]: never }>() {}
+function checkFields<_ extends { [k in keyof any]: never }>() { }
 
 // https://github.com/sindresorhus/type-fest
 type Numeric = number | bigint
